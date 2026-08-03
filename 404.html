@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FSG Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <meta http-equiv="refresh" content="30" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'League Spartan', sans-serif;
+      background: #7A1515;
+      color: #F0EDE6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      margin-bottom: 2rem;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1;   transform: scale(1); }
+      50%       { opacity: 0.7; transform: scale(0.96); }
+    }
+
+    h1 {
+      font-size: clamp(1.75rem, 5vw, 2.75rem);
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #F0EDE6;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    p {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(240, 237, 230, 0.65);
+      max-width: 340px;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    button {
+      font-family: 'League Spartan', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #7A1515;
+      background: #F0EDE6;
+      border: none;
+      border-radius: 12px;
+      padding: 0.75rem 2rem;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    button:hover  { opacity: 0.88; }
+    button:active { transform: scale(0.96); }
+
+    .timer {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: rgba(240, 237, 230, 0.3);
+    }
+
+    /* Floating shapes */
+    .shape {
+      position: fixed;
+      border-radius: 40%;
+      background: rgba(240, 237, 230, 0.05);
+      pointer-events: none;
+    }
+    .s1 { width: 120px; height: 120px; top:  6%; left:  4%; animation: float 7s ease-in-out infinite; }
+    .s2 { width:  80px; height:  80px; top: 12%; right: 8%; border-radius: 50%; animation: float 9s ease-in-out infinite 1.5s; }
+    .s3 { width:  60px; height:  60px; bottom: 18%; left: 8%; animation: float 6s ease-in-out infinite 0.8s; }
+    .s4 { width: 100px; height: 100px; bottom: 10%; right: 6%; border-radius: 50%; animation: float 8s ease-in-out infinite 2s; }
+    .s5 { width:  50px; height:  50px; top: 45%; left: 2%;  animation: float 5s ease-in-out infinite 1s; }
+    .s6 { width:  70px; height:  70px; top: 55%; right: 3%; animation: float 7.5s ease-in-out infinite 3s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(-18px) rotate(6deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating background shapes -->
+  <div class="shape s1"></div>
+  <div class="shape s2"></div>
+  <div class="shape s3"></div>
+  <div class="shape s4"></div>
+  <div class="shape s5"></div>
+  <div class="shape s6"></div>
+
+  <img
+    src="https://ronfsg.github.io/flagship-growth-reports/assets/fsg-logo.png"
+    alt="Flagship Growth"
+    class="logo"
+  />
+
+  <h1>We'll Be Right Back</h1>
+
+  <p>We're making some improvements.<br />Check back in a few minutes.</p>
+
+  <button onclick="location.reload()">Try Again</button>
+
+  <p class="timer">Auto-refreshing in 30 seconds…</p>
+
+  <script>
+    // Countdown display
+    var seconds = 30
+    var el = document.querySelector('.timer')
+    setInterval(function () {
+      seconds--
+      if (seconds <= 0) {
+        el.textContent = 'Refreshing…'
+      } else {
+        el.textContent = 'Auto-refreshing in ' + seconds + ' second' + (seconds === 1 ? '' : 's') + '…'
+      }
+    }, 1000)
+  </script>
+
+</body>
+</html>
